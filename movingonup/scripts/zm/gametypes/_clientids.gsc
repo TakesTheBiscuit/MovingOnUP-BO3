@@ -44,7 +44,7 @@ function on_player_connect()
 
 }
 
-function on_player_spawned() //this function will get called on every spawn! 
+function on_player_spawned()
 {
 	level flag::wait_till( "initial_blackscreen_passed" );
 	iPrintln("github.com/TakesTheBiscuit"); 
@@ -54,10 +54,10 @@ function moving_on_up_now()
 {
 	while(1)
 	{
-		level flag::wait_till( "end_of_round" );
-		wait(2);
-		iPrintln("MOVING ON UP");
-		playsoundatposition("movingonupsound", self.origin);
+		level flag::wait_till("between_round_over");
+		if (level.round_number > 1) {
+			iPrintln("MOVING ON UP");
+			playsound("movingonupsound");
+		}
 	}
-	
 }
