@@ -52,8 +52,12 @@ function on_player_spawned() //this function will get called on every spawn!
 
 function moving_on_up_now()
 {
-	level flag::wait_till( "end_of_round" );
-	wait(2);
-	iPrintln("MOVING ON UP");
-	self PlaySound("movingonupsound");
+	while(1)
+	{
+		level flag::wait_till( "end_of_round" );
+		wait(2);
+		iPrintln("MOVING ON UP");
+		playsoundatposition("movingonupsound", self.origin);
+	}
+	
 }
