@@ -30,7 +30,6 @@ function __init__()
 function init()
 {
 	level.clientid = 0;
-	level thread moving_on_up_now();
 }
 
 function on_player_connect()
@@ -48,16 +47,20 @@ function on_player_spawned()
 {
 	level flag::wait_till( "initial_blackscreen_passed" );
 	iPrintln("github.com/TakesTheBiscuit"); 
+
+	level thread moving_on_up_now();
 }
 
 function moving_on_up_now()
 {
+	self endon( "death" ); 
+
 	while(1)
 	{
-		level flag::wait_till("between_round_over");
-		if (level.round_number > 1) {
-			iPrintln("MOVING ON UP");
-			playsound("movingonupsound");
-		}
+		level flag::wait_till("start_zombie_round_logic");
+
+		iPrintln("MOVING ON UP");
+		level PlaySound("movingonupsound");
+		
 	}
 }
