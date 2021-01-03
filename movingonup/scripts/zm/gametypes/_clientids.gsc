@@ -53,17 +53,20 @@ function moveup(playa) {
 		level waittill( "end_of_round" );
 		
 		thread sound::play_in_space("movingonupsound");
-		iPrintln("^ MOVING ON UP");
+		iPrintln("MOVING ON UP");
 		wait(0.2);
-		iPrintln("- MOVING ON UP");
+		iPrintln("MOVING ON UP");
 		wait(0.2);
-		iPrintln("^ MOVING ON UP");
+		iPrintln("MOVING ON UP");
 		wait(0.2);
-		iPrintln("- MOVING ON UP");
+		iPrintln("MOVING ON UP");
 		wait(0.2);
-		iPrintln("^ MOVING ON UP");
+		iPrintln("MOVING ON UP");
 		wait(0.2);
-		iPrintln("- MOVING ON UP");
-		
+		iPrintln("MOVING ON UP");
+		wait(0.2);
+		iPrintln("MOVING ON UP");
+		wait(0.2);
+		iPrintln("MOVING ON UP");	
 	}
 }
