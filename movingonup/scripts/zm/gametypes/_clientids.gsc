@@ -35,7 +35,7 @@ function on_player_connect()
 	}
 }
 
-function on_player_spawned() //this function will get called on every spawn! 
+function on_player_spawned()
 {
 	level flag::wait_till( "initial_blackscreen_passed" );
 	iPrintln("github.com/TakesTheBiscuit"); 
