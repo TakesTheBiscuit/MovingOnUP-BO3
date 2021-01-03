@@ -1,20 +1,13 @@
-/*
-
-▒█▀▀█ █▀▀█ █▀▀▄ ▒█▀▀█ █▀▀█ █▀▀▄ ▒█▀▄▀█ █▀▀█ █▀▀▄ █▀▀▄ ░▀░ █▀▀▄ █▀▀▀ 
-▒█░░░ █▄▄█ █▀▀▄ ▒█░░░ █░░█ █░░█ ▒█▒█▒█ █░░█ █░░█ █░░█ ▀█▀ █░░█ █░▀█ 
-▒█▄▄█ ▀░░▀ ▀▀▀░ ▒█▄▄█ ▀▀▀▀ ▀░░▀ ▒█░░▒█ ▀▀▀▀ ▀▀▀░ ▀▀▀░ ▀▀▀ ▀░░▀ ▀▀▀▀ 
-Check out https://cabconmodding.com/!
-
-*/
-
 #using scripts\codescripts\struct;
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\system_shared;
 #using scripts\shared\array_shared;
 #using scripts\shared\flag_shared;
-#using scripts\zm\_zm_audio;
+#using scripts\shared\sound_shared;
 
 #insert scripts\shared\shared.gsh;
+
+
 
 #namespace clientids;
 
@@ -25,7 +18,7 @@ function __init__()
 	callback::on_start_gametype( &init );
 	callback::on_connect( &on_player_connect );
 	callback::on_spawned( &on_player_spawned ); 
-}	
+}
 
 function init()
 {
@@ -40,27 +33,30 @@ function on_player_connect()
 		self.clientid = level.clientid;
 		level.clientid++;
 	}
-
 }
 
-function on_player_spawned()
+function on_player_spawned() //this function will get called on every spawn! 
 {
 	level flag::wait_till( "initial_blackscreen_passed" );
 	iPrintln("github.com/TakesTheBiscuit"); 
+	wait(2);
 
-	level thread moving_on_up_now();
+	self thread moveup();
+
 }
 
-function moving_on_up_now()
-{
+function moveup() {
 	self endon( "death" ); 
-
-	while(1)
+	
+	for (;;)
 	{
-		level flag::wait_till("start_zombie_round_logic");
+		iPrintln("WAITING TO MOVE ON UP");
+		//level flag::wait_till("start_zombie_round_logic");
+		//iPrintln("MOVING ON UP");
+		level waittill( "end_of_round" );
 
-		iPrintln("MOVING ON UP");
-		level PlaySound("movingonupsound");
-		
+		thread sound::play_in_space("movingonupsound", level.speaker.origin);
+		// "Example: 
+
 	}
 }
